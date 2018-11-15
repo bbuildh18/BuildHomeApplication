@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildHomeApi.Controllers
@@ -10,10 +11,17 @@ namespace BuildHomeApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        ISampleBusiness sb;
+        public ValuesController(ISampleBusiness sampleBusiness)
+        {
+            sb = sampleBusiness;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            sb.TestBusinessMethod("s");
             return new string[] { "value1", "value2" };
         }
 
