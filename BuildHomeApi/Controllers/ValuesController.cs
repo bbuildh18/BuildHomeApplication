@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLayer.Interfaces;
+using DataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildHomeApi.Controllers
@@ -12,16 +13,19 @@ namespace BuildHomeApi.Controllers
     public class ValuesController : ControllerBase
     {
         ISampleBusiness sb;
-        public ValuesController(ISampleBusiness sampleBusiness)
+        private readonly BuildHomeDBContext _context;
+
+        public ValuesController(ISampleBusiness sampleBusiness, BuildHomeDBContext buildHomeDBContext)
         {
             sb = sampleBusiness;
+            _context = buildHomeDBContext;
         }
 
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            sb.TestBusinessMethod("s");
+            sb.TestBusinessMethod("s",_context);
             return new string[] { "value1", "value2" };
         }
 
