@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DataAccess.Models
 {
     public class Item
     {
-        public int ItemId { get; set; }
+        [Key]
+        public int ItemID { get; set; }
 
         public string ItemName { get; set; }
+
+        public bool IsSerialized { get; set; }
+
+        public double UnitPrice { get; set; }
 
     }
 }
